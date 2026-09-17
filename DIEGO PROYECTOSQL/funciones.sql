@@ -1,7 +1,4 @@
-USE piteria_don_piccolo;
-
--- Cambiamos el delimitador para poder crear funciones y procedimientos con múltiples líneas
-
+USE pizzeria_don_piccolo;
 
 DELIMITER //
 -- =========================================================================
@@ -36,6 +33,10 @@ BEGIN
     RETURN v_total;
 END //
 DELIMITER ;
+
+SELECT calcular_total_pedido(1) AS total_calculado;
+
+
 
 
 
@@ -73,7 +74,8 @@ BEGIN
 END //
 DELIMITER ;
 
-
+desc pedidos;
+SELECT calcular_ganancia_neta_diaria('2026-09-17') AS ganancia_hoy;
 
 
 DELIMITER //
@@ -99,3 +101,6 @@ END //
 
 -- Restaurar el delimitador por defecto
 DELIMITER ;
+
+CALL registrar_entrega_domicilio(5, NOW());
+select * from domicilios;

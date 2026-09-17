@@ -1,7 +1,5 @@
 USE pizzeria_don_piccolo;
 
--- Cambiamos el delimitador para permitir bloques de código con múltiples sentencias
-
 DELIMITER //
 -- =========================================================================
 -- 1. TRIGGER: Actualización automática de stock de ingredientes
@@ -19,6 +17,8 @@ BEGIN
     WHERE pi.pizza_id = NEW.pizza_id;
 END //
 
+INSERT INTO detalle_pedidos (pedido_id, pizza_id, cantidad, subtotal)
+VALUES (10, 1, 3, 105000.00);
 
 -- =========================================================================
 -- 2. TRIGGER: Auditoría de cambios de precios (historial_precios)
@@ -35,6 +35,10 @@ BEGIN
         VALUES (OLD.id, OLD.precio_base, NEW.precio_base);
     END IF;
 END //
+
+UPDATE pizzas 
+SET precio_base = 38000.00 
+WHERE id = 1;
 
 
 -- =========================================================================
@@ -57,3 +61,7 @@ END //
 
 -- Restaurar el delimitador por defecto
 DELIMITER ;
+
+UPDATE domicilios 
+SET hora_entrega = '2026-09-17 19:10:00' 
+WHERE pedido_id = 15;
