@@ -9,7 +9,7 @@ SELECT
     p.total,
     p.estado
 FROM clientes c
-INNER JOIN pedidos p ON c.id = p.cliente_id;
+JOIN pedidos p ON c.id = p.cliente_id;
 
 
 /** 
@@ -47,7 +47,7 @@ SELECT
     c.nombre AS nombre_cliente,
     COUNT(p.id) AS total_pedidos
 FROM clientes c
-INNER JOIN pedidos p ON c.id = p.cliente_id
+JOIN pedidos p ON c.id = p.cliente_id
 GROUP BY c.id, c.nombre
 HAVING COUNT(p.id) > 2;
 
